@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global Student Startup Foundation</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue:  #242EC0;
+  --navy:  #08044C;
+  --dark:  #161616;
+  --black: #000000;
+  --white: #ffffff;
+  --rule:  rgba(255,255,255,0.15);
+  --muted: rgba(255,255,255,0.55);
+  --faint: rgba(255,255,255,0.35);
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Noto Sans', Helvetica, Arial, sans-serif; background: var(--black); color: var(--white); overflow-x: hidden; }
+
+/* ── NAV ── */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; background: rgba(0,0,0,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+.nav-logo { display: flex; align-items: center; gap: 16px; text-decoration: none; }
+.logo-sm { font-size: 17px; font-weight: 900; line-height: 0.88; letter-spacing: -0.01em; color: var(--white); }
+.nav-word { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); border-left: 1px solid rgba(255,255,255,0.15); padding-left: 16px; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--white); }
+
+/* ── HERO ── */
+#hero { min-height: 100vh; background: var(--blue); display: grid; grid-template-columns: 1fr 1fr; padding-top: 56px; overflow: hidden; }
+.hero-l { display: flex; flex-direction: column; justify-content: flex-end; padding: 80px 56px; border-right: 1px solid var(--rule); }
+.logo-lg { font-size: clamp(80px, 11vw, 130px); font-weight: 900; line-height: 0.83; letter-spacing: -0.03em; color: var(--white); margin-bottom: 56px; }
+.hero-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 16px; }
+.hero-h1 { font-size: clamp(44px, 6.5vw, 88px); font-weight: 900; line-height: 0.93; text-transform: uppercase; letter-spacing: -0.02em; }
+.hero-r { display: flex; flex-direction: column; justify-content: flex-end; padding: 80px 56px; }
+.hero-oneliner { font-size: 13px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+.hero-sub { font-size: 17px; font-weight: 300; line-height: 1.75; color: rgba(255,255,255,0.75); max-width: 440px; margin-bottom: 48px; }
+.hero-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--rule); padding-top: 28px; gap: 0; margin-bottom: 40px; }
+.h-stat { padding-right: 20px; border-right: 1px solid var(--rule); }
+.h-stat:last-child { border-right: none; padding-right: 0; padding-left: 20px; }
+.h-stat:nth-child(2) { padding-left: 20px; }
+.h-num { font-size: 36px; font-weight: 900; line-height: 1; }
+.h-lbl { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 5px; }
+.h-vision { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.3); margin-top: 5px; letter-spacing: 0.02em; line-height: 1.4; }
+.btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { font-family: 'Noto Sans', Helvetica, sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 13px 28px; text-decoration: none; cursor: pointer; border: none; transition: opacity .2s; display: inline-block; }
+.btn:hover { opacity: 0.8; }
+.btn-w { background: var(--white); color: var(--blue); }
+.btn-o { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.4); }
+
+/* ── VALUES BAND ── */
+#values-band { background: var(--dark); padding: 24px 56px; display: flex; align-items: center; gap: 56px; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; }
+.vb-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); white-space: nowrap; }
+.vb-vals { display: flex; gap: 40px; flex-wrap: wrap; }
+.vb-v { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+/* ── SHARED SECTION ── */
+.sec { padding: 96px 56px; }
+.ey { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 18px; }
+.st { font-size: clamp(30px, 4.5vw, 56px); font-weight: 900; text-transform: uppercase; line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 20px; }
+.sb { font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--muted); max-width: 560px; }
+
+/* ── MISSION ── */
+#mission { background: var(--navy); display: grid; grid-template-columns: 1fr 1fr; }
+.m-l { padding: 96px 56px; border-right: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; justify-content: center; }
+.m-stmt { font-size: clamp(36px, 5vw, 66px); font-weight: 900; text-transform: uppercase; line-height: 0.92; letter-spacing: -0.02em; }
+.m-r { padding: 96px 56px; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+.m-r p { font-size: 16px; font-weight: 300; line-height: 1.8; color: rgba(255,255,255,0.7); }
+.m-bold { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--white); margin-top: 8px; }
+
+/* ── PROGRAM SECTIONS ── */
+.prog-section { border-top: 1px solid rgba(255,255,255,0.06); }
+
+/* Hero banner for each program */
+.prog-hero { display: grid; grid-template-columns: 1fr 1fr; }
+.prog-hero-l { padding: 72px 56px; display: flex; flex-direction: column; justify-content: center; }
+.prog-hero-r { padding: 72px 56px; display: flex; flex-direction: column; justify-content: center; border-left: 1px solid rgba(255,255,255,0.08); }
+.prog-num { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+.prog-name { font-size: clamp(36px, 5vw, 64px); font-weight: 900; text-transform: uppercase; line-height: 0.92; letter-spacing: -0.02em; margin-bottom: 14px; }
+.prog-tagline { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.prog-desc { font-size: 16px; font-weight: 300; line-height: 1.75; color: var(--muted); margin-bottom: 28px; }
+
+/* Program stats row */
+.prog-stats { display: flex; gap: 0; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 28px; margin-top: 8px; }
+.ps { padding-right: 28px; border-right: 1px solid rgba(255,255,255,0.1); margin-right: 28px; }
+.ps:last-child { border-right: none; margin-right: 0; padding-right: 0; }
+.ps-n { font-size: 28px; font-weight: 900; line-height: 1; }
+.ps-l { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+/* Program detail grid */
+.prog-details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.07); }
+.prog-details-2 { grid-template-columns: repeat(2, 1fr); }
+.prog-details-4 { grid-template-columns: repeat(4, 1fr); }
+.pd-card { padding: 36px 32px; }
+.pd-card h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 10px; }
+.pd-card p { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+.pd-card ul { padding-left: 16px; }
+.pd-card li { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.65; margin-bottom: 4px; }
+
+/* Program pathway */
+.prog-path { display: flex; align-items: center; flex-wrap: wrap; gap: 0; margin-top: 28px; }
+.pp-node { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); padding: 14px 20px; text-align: center; flex: 1; min-width: 100px; }
+.pp-node h5 { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+.pp-node p { font-size: 11px; font-weight: 300; color: rgba(255,255,255,0.55); }
+.pp-arr { font-size: 16px; color: rgba(255,255,255,0.3); padding: 0 6px; flex-shrink: 0; }
+
+/* alt bg colors per program */
+.bg-black { background: var(--black); }
+.bg-dark  { background: var(--dark); }
+.bg-navy  { background: var(--navy); }
+.bg-blue  { background: var(--blue); }
+.bg-blue .ey { color: rgba(255,255,255,0.45); }
+.bg-blue .sb { color: rgba(255,255,255,0.65); }
+.bg-blue .prog-desc { color: rgba(255,255,255,0.7); }
+.bg-blue .prog-tagline { color: rgba(255,255,255,0.5); }
+.bg-blue .prog-stats { border-top-color: rgba(255,255,255,0.2); }
+.bg-blue .ps { border-right-color: rgba(255,255,255,0.2); }
+.bg-blue .prog-details { background: rgba(255,255,255,0.1); }
+.bg-blue .pd-card { background: transparent; }
+.bg-blue .pd-card h4 { color: rgba(255,255,255,0.5); }
+.bg-blue .pd-card p, .bg-blue .pd-card li { color: rgba(255,255,255,0.75); }
+.bg-blue .pp-node { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
+.bg-navy .prog-hero-r { border-left-color: rgba(255,255,255,0.1); }
+
+/* ── GLOBAL STANDARD ── */
+#standard { background: var(--black); }
+.std-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; margin-top: 56px; background: rgba(255,255,255,0.06); }
+.std-card { background: var(--black); padding: 40px 36px; border-top: 2px solid var(--blue); }
+.std-card h3 { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+.std-name { font-size: 18px; font-weight: 800; color: var(--white); margin-bottom: 10px; line-height: 1.1; }
+.std-card p { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+/* ── LEADERSHIP ── */
+#leadership { background: var(--black); }
+.l-tier-label { font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); padding: 28px 0 14px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 1px; }
+.leader-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); }
+.l-card { background: var(--black); padding: 36px 32px; border-top: 2px solid transparent; transition: border-color .2s, background .2s; }
+.l-card:hover { border-top-color: var(--blue); background: #0a0a14; }
+.l-name { font-size: 17px; font-weight: 800; text-transform: uppercase; margin-bottom: 3px; }
+.l-role { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+.l-bio { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+/* ── ADVISORS ── */
+#advisors { background: var(--dark); }
+.adv-section { margin-top: 48px; }
+.adv-region { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 16px; margin-top: 32px; }
+.adv-region:first-child { margin-top: 0; }
+.adv-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.adv-pill { padding: 9px 16px; border: 1px solid rgba(255,255,255,0.1); transition: border-color .2s, background .2s; cursor: default; }
+.adv-pill:hover { border-color: var(--blue); background: rgba(36,46,192,0.12); }
+.adv-n { font-size: 12px; font-weight: 700; text-transform: uppercase; }
+.adv-o { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 1px; }
+
+/* ── UNIVERSITIES ── */
+#universities { background: var(--navy); padding: 96px 56px; }
+#universities .ey { color: rgba(255,255,255,0.4); }
+#universities .sb { color: rgba(255,255,255,0.65); }
+.uni-region { margin-top: 40px; }
+.uni-rl { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.12); margin-bottom: 14px; }
+.uni-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.uni-tag { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(255,255,255,0.1); color: var(--white); padding: 8px 16px; border: 1px solid rgba(255,255,255,0.12); }
+
+/* ── 2030 ── */
+#vision { background: var(--black); }
+.v-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; background: rgba(255,255,255,0.06); }
+.v-card { background: var(--black); padding: 48px 36px; border-top: 2px solid var(--blue); }
+.v-num { font-size: clamp(40px, 5vw, 60px); font-weight: 900; line-height: 1; margin-bottom: 10px; }
+.v-label { font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+.v-card p { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+/* ── GOVERNANCE ── */
+#governance { background: var(--dark); }
+.gov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 56px; background: rgba(255,255,255,0.07); }
+.gov-card { background: var(--dark); padding: 40px 36px; }
+.gov-card h3 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--white); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.gov-card p, .gov-card li { font-size: 13px; font-weight: 300; line-height: 1.75; color: var(--muted); margin-bottom: 6px; }
+.gov-card ul { padding-left: 16px; }
+.gv { color: var(--white) !important; font-weight: 600 !important; }
+
+/* ── CONTACT ── */
+#contact { background: var(--black); display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid rgba(255,255,255,0.06); }
+.c-l { padding: 96px 56px; border-right: 1px solid rgba(255,255,255,0.06); }
+.c-r { padding: 96px 56px; }
+.c-details { margin-top: 40px; display: flex; flex-direction: column; gap: 20px; }
+.c-item label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 4px; }
+.c-item p, .c-item a { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.7); line-height: 1.6; text-decoration: none; }
+.c-item a:hover { color: var(--white); }
+.c-socials { margin-top: 36px; display: flex; flex-direction: column; gap: 10px; }
+.soc { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-decoration: none; transition: color .2s; }
+.soc:hover { color: var(--white); }
+
+/* ── FOOTER ── */
+footer { background: #04040a; border-top: 1px solid rgba(255,255,255,0.05); padding: 36px 56px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+.f-l { display: flex; align-items: center; gap: 16px; }
+.logo-f { font-size: 15px; font-weight: 900; line-height: 0.88; letter-spacing: -0.01em; color: rgba(255,255,255,0.4); }
+.f-name { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); border-left: 1px solid rgba(255,255,255,0.1); padding-left: 16px; }
+.f-r { font-size: 11px; color: rgba(255,255,255,0.2); text-align: right; line-height: 1.7; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 860px) {
+  nav { padding: 0 20px; } .nav-links { display: none; }
+  #hero, #mission, .prog-hero, #contact { grid-template-columns: 1fr; }
+  .hero-l { border-right: none; border-bottom: 1px solid var(--rule); padding: 80px 24px 48px; }
+  .hero-r { padding: 48px 24px 72px; }
+  .m-l { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .m-l, .m-r { padding: 64px 24px; }
+  .prog-hero-l, .prog-hero-r { padding: 48px 24px; }
+  .prog-hero-r { border-left: none; border-top: 1px solid rgba(255,255,255,0.08); }
+  .prog-details, .prog-details-2, .prog-details-4 { grid-template-columns: 1fr; }
+  .sec, #universities, #governance { padding: 64px 24px; }
+  #values-band { padding: 20px 24px; }
+  .std-grid, .gov-grid, .v-grid { grid-template-columns: 1fr; }
+  .leader-grid { grid-template-columns: 1fr; }
+  .c-l { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .c-l, .c-r { padding: 64px 24px; }
+  footer { padding: 28px 24px; } .f-r { text-align: left; }
+  .prog-path { gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">
+    <div class="logo-sm">GS<br>SF</div>
+    <span class="nav-word">Foundation</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#mission">Mission</a></li>
+    <li><a href="#gssc-worlds">GSSC</a></li>
+    <li><a href="#ai-cup">AI Cup</a></li>
+    <li><a href="#academy">Academy</a></li>
+    <li><a href="#ventures">Ventures</a></li>
+    <li><a href="#advisory">Advisory</a></li>
+    <li><a href="#leadership">Team</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-l">
+    <div class="logo-lg">GS<br>SF</div>
+    <div class="hero-tag">Branding Ideology</div>
+    <h1 class="hero-h1">We Build<br>The Future</h1>
+  </div>
+  <div class="hero-r">
+    <div class="hero-oneliner">Global. Funded. In-Person.</div>
+    <p class="hero-sub">GSSF is a 501(c)(3) institutional bridge that connects the world's brightest minds to the global stage. We develop the next generation of global leaders through funded undergraduate innovation and entrepreneurship programs, ensuring that the accident of birth never limits the capacity to lead.</p>
+    <div class="hero-stats">
+      <div class="h-stat">
+        <div class="h-num">18+</div>
+        <div class="h-lbl">Universities · Now</div>
+        <div class="h-vision">→ Self-sustaining on 6 continents · 2030</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-num">4</div>
+        <div class="h-lbl">Continents · Now</div>
+        <div class="h-vision">→ All 6 continents · 2030</div>
+      </div>
+      <div class="h-stat">
+        <div class="h-num">~500</div>
+        <div class="h-lbl">Students Reached · Now</div>
+        <div class="h-vision">→ 2,000 on full scholarship · 2030</div>
+      </div>
+    </div>
+    <div class="btns">
+      <a href="#gssc-worlds" class="btn btn-w">Our Programs</a>
+      <a href="#contact" class="btn btn-o">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES BAND -->
+<div id="values-band">
+  <div class="vb-label">Brand Values</div>
+  <div class="vb-vals">
+    <span class="vb-v">Pioneering</span>
+    <span class="vb-v">Catalytic</span>
+    <span class="vb-v">Empowering</span>
+    <span class="vb-v">Community</span>
+    <span class="vb-v">Human-Centered</span>
+  </div>
+</div>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="m-l">
+    <div class="m-stmt">Talent<br>is Global.<br>Opportunity<br>is Not.</div>
+  </div>
+  <div class="m-r">
+    <p><strong style="color:var(--white);font-weight:700;">The Vision.</strong> Developing the next generation of global leaders regardless of financial or geographic circumstances. We envision a world where the accident of birth — one's place of origin or economic starting point — no longer dictates their capacity to lead and impact the global economy.</p>
+    <p><strong style="color:var(--white);font-weight:700;">The Mission.</strong> Providing funded, global, in-person experiences to undergraduate students and pairing them with the world's best mentors through innovation and entrepreneurship programs. GSSF acts as a permanent institutional bridge and market-corrector, removing financial barriers and creating the physical proximity required for the transfer of wisdom from established leaders to emerging talent.</p>
+    <div class="m-bold">Global. Funded. In-Person.</div>
+  </div>
+</section>
+
+<!-- ═══════════ PROGRAM 1: GSSC WORLDS ═══════════ -->
+<div id="gssc-worlds" class="prog-section bg-blue">
+  <div class="prog-hero bg-blue">
+    <div class="prog-hero-l">
+      <div class="prog-num">Program 01 · Flagship</div>
+      <div class="prog-name">GSSC<br>Worlds</div>
+      <div class="prog-tagline">The Global Proving Ground · Seoul, South Korea</div>
+    </div>
+    <div class="prog-hero-r">
+      <p class="prog-desc">The Global Student Startup Competition is the flagship annual culmination of the GSSF cycle. Undergraduate teams from regional qualifiers across six continents compete on the world stage at the Asian Leadership Conference (ALC) in Seoul — one of Asia's most influential global convenings. Every participant is audited against the GSSC Competition Standard to ensure the global stage maintains a world-class merit signal.</p>
+      <div class="prog-stats">
+        <div class="ps"><div class="ps-n">20</div><div class="ps-l">Teams at Worlds</div></div>
+        <div class="ps"><div class="ps-n">10+</div><div class="ps-l">Int'l Teams</div></div>
+        <div class="ps"><div class="ps-n">May</div><div class="ps-l">Annual · Seoul</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="prog-details prog-details-4 bg-blue">
+    <div class="pd-card bg-blue">
+      <h4>Team Structure</h4>
+      <p>Teams of 2–5 undergraduate students. Delegations include 2–4 competing students per venture plus one funded student organizer who travels to Seoul.</p>
+    </div>
+    <div class="pd-card bg-blue">
+      <h4>Eligibility</h4>
+      <p>Current undergraduates or recent graduates. Ventures must be pre-revenue, pre-incorporation, with work beginning no earlier than June 2025. English-language participation required.</p>
+    </div>
+    <div class="pd-card bg-blue">
+      <h4>2026 Schedule</h4>
+      <ul>
+        <li>Arrival: May 17 by 4PM KST</li>
+        <li>Pitch Bootcamp: May 18–19</li>
+        <li>Preliminary: May 19</li>
+        <li>Finals @ ALC: May 21</li>
+        <li>Departure: May 22+</li>
+      </ul>
+    </div>
+    <div class="pd-card bg-blue">
+      <h4>GSSC x Region</h4>
+      <p>In-person regional qualifying competitions select teams for GSSC Worlds. Early regions are seeded by GSSF or patron sponsors; maturing regions are expected to fund themselves by 2030.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PROGRAM 2: GLOBAL AI CUP ═══════════ -->
+<div id="ai-cup" class="prog-section bg-dark">
+  <div class="prog-hero bg-dark">
+    <div class="prog-hero-l">
+      <div class="prog-num">Program 02 · Technical Engine</div>
+      <div class="prog-name">Global<br>AI Cup</div>
+      <div class="prog-tagline">Applied AI Competition · Regional → Seoul</div>
+    </div>
+    <div class="prog-hero-r">
+      <p class="prog-desc">The premier international undergraduate competition dedicated to seeding local "intelligence economies" by building functional AI products. Unlike hackathons or theoretical competitions, the Global AI Cup focuses exclusively on applied AI — student-built agents, RAG systems, agentic workflows, and startup prototypes that solve real-world problems. The most efficient activation model in the GSSF portfolio.</p>
+      <div class="prog-stats">
+        <div class="ps"><div class="ps-n">$2K</div><div class="ps-l">Per Region</div></div>
+        <div class="ps"><div class="ps-n">500+</div><div class="ps-l">Students/Region</div></div>
+        <div class="ps"><div class="ps-n">&lt;$4</div><div class="ps-l">Per Student</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="prog-details prog-details-2 bg-dark">
+    <div class="pd-card bg-dark">
+      <h4>Qualification Path</h4>
+      <div class="prog-path">
+        <div class="pp-node"><h5>Campus AI Cup</h5><p>10+ universities per region</p></div>
+        <div class="pp-arr">→</div>
+        <div class="pp-node"><h5>Regional Final</h5><p>High-stakes summit</p></div>
+        <div class="pp-arr">→</div>
+        <div class="pp-node"><h5>GSSC Worlds</h5><p>Seoul · May</p></div>
+      </div>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Evaluation Rubric (100 pts)</h4>
+      <ul>
+        <li><strong style="color:var(--white)">Technical Complexity</strong> — 30 pts · RAG, agentic workflows, fine-tuning</li>
+        <li><strong style="color:var(--white)">Applied Utility & Impact</strong> — 25 pts · Real-world problem solving</li>
+        <li><strong style="color:var(--white)">System Demo & Reliability</strong> — 20 pts · Live performance</li>
+        <li><strong style="color:var(--white)">Scalability & Feasibility</strong> — 15 pts · Path to product</li>
+        <li><strong style="color:var(--white)">Presentation & Docs</strong> — 10 pts · README, architecture clarity</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prog-details prog-details-4 bg-dark">
+    <div class="pd-card bg-dark">
+      <h4>Phase 1 · Active (2025–26)</h4>
+      <p>India, Latin America, South Korea, United States, Europe</p>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Phase 2 · Scaling (2027)</h4>
+      <p>Singapore, Colombia, Ukraine</p>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Phase 3 · Maturity (2028+)</h4>
+      <p>Nigeria, Mexico. Target: 20 regional AI competitions per year.</p>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Prizes Per Region</h4>
+      <p>$1,000 — 1st Place<br>$500 — 2nd Place<br>$500 — Production Support<br>$2,000 total regional activation</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PROGRAM 3: GSSF ACADEMY ═══════════ -->
+<div id="academy" class="prog-section bg-black">
+  <div class="prog-hero bg-black">
+    <div class="prog-hero-l">
+      <div class="prog-num">Program 03 · Theory to Execution</div>
+      <div class="prog-name">GSSF<br>Academy</div>
+      <div class="prog-tagline">3-Week Global Innovation Academy · Europe</div>
+    </div>
+    <div class="prog-hero-r">
+      <p class="prog-desc">A three-week, in-person Global Innovation Academy designed to bring together high-potential undergraduate students and experienced mentors from around the world to build early-stage, human-centered ventures. Taught by industry operators and mentors from Big Tech and top-tier VCs. The Academy is a feeder, accelerator, and ecosystem extension — not a substitute for GSSC Worlds. One team per cohort attends GSSC Worlds in Seoul with all expenses covered.</p>
+      <div class="prog-stats">
+        <div class="ps"><div class="ps-n">3</div><div class="ps-l">Weeks · In-Person</div></div>
+        <div class="ps"><div class="ps-n">1</div><div class="ps-l">Team to Seoul</div></div>
+        <div class="ps"><div class="ps-n">2,000</div><div class="ps-l">Target · 2030</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="prog-details bg-black">
+    <div class="pd-card bg-dark">
+      <h4>Week 1 — Formation & Validation</h4>
+      <ul>
+        <li>Team formation</li>
+        <li>Idea factory & problem exploration</li>
+        <li>Customer discovery & validation</li>
+        <li>Early traction experiments</li>
+        <li>Manual / low-fidelity MVPs</li>
+      </ul>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Week 2 — Design & Prototyping</h4>
+      <ul>
+        <li>Product and service design</li>
+        <li>Technical & non-technical prototyping</li>
+        <li>Business model refinement</li>
+        <li>Mentor feedback loops</li>
+        <li>Iteration across all dimensions</li>
+      </ul>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Week 3 — Storytelling & Pitch</h4>
+      <ul>
+        <li>Pitch development & narrative clarity</li>
+        <li>Demo preparation</li>
+        <li>Final presentations</li>
+        <li>Selection of team for GSSC Worlds</li>
+        <li>Full travel & lodging covered for selected team</li>
+      </ul>
+    </div>
+  </div>
+  <div class="prog-details prog-details-2 bg-black" style="margin-top:1px;">
+    <div class="pd-card bg-dark">
+      <h4>Participation Model</h4>
+      <p>Invitation-led program with limited open application slots to ensure access diversity. Participants are selected through GSSF Friends & Family network invitations, university and mentor nominations, and a small number of open applications. Once selected, all participants are treated equally — no tiers, labels, or distinctions.</p>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Pathway to GSSC Worlds</h4>
+      <p>One Academy team is selected to attend GSSC Worlds in Seoul with international travel, lodging, full participation in the GSSC Pitch Bootcamp, and on-stage pitching at the Asian Leadership Conference — all expenses covered by GSSF.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PROGRAM 4: GSSF VENTURES ═══════════ -->
+<div id="ventures" class="prog-section bg-navy">
+  <div class="prog-hero bg-navy">
+    <div class="prog-hero-l">
+      <div class="prog-num">Program 04 · Silicon Valley Bridge</div>
+      <div class="prog-name">GSSF<br>Ventures</div>
+      <div class="prog-tagline">Venture Access & Signal Platform</div>
+    </div>
+    <div class="prog-hero-r">
+      <p class="prog-desc">A venture access and signal platform created to identify exceptional undergraduate founding teams globally and connect them to leading VC firms, accelerators, and startup ecosystems. GSSF Ventures focuses on identification, baselining, and signal creation — surfacing high-potential student founders early and providing structured, high-trust access to the global venture ecosystem. GSSF takes zero equity.</p>
+      <div class="prog-stats">
+        <div class="ps"><div class="ps-n">10</div><div class="ps-l">Select Teams/Cohort</div></div>
+        <div class="ps"><div class="ps-n">0%</div><div class="ps-l">Equity Taken</div></div>
+        <div class="ps"><div class="ps-n">Golden</div><div class="ps-l">Ticket Access</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="prog-details prog-details-4 bg-navy">
+    <div class="pd-card bg-navy">
+      <h4>What It Is</h4>
+      <ul>
+        <li>A venture access & signal platform</li>
+        <li>A global scouting & filtering mechanism</li>
+        <li>A bridge between regional ecosystems and global capital</li>
+        <li>A curated, relationship-driven model grounded in trust</li>
+      </ul>
+    </div>
+    <div class="pd-card bg-navy">
+      <h4>What It Is Not</h4>
+      <ul>
+        <li>Not a traditional incubator</li>
+        <li>Not a long-term accelerator</li>
+        <li>Not an investment fund</li>
+        <li>Not a demo-day factory</li>
+      </ul>
+    </div>
+    <div class="pd-card bg-navy">
+      <h4>The Golden Ticket</h4>
+      <p>Ten Select Teams per cohort receive Golden Ticket access — an intensive in-person venture bootcamp followed by private pitch sessions with top Silicon Valley venture capital firms and institutional accelerators.</p>
+    </div>
+    <div class="pd-card bg-navy">
+      <h4>Global Scouting</h4>
+      <p>GSSF Ventures leverages the Friends & Family network as its primary scouting engine. Trusted regional leaders recommend standout teams. Open applications are limited and intentional — enabling discovery beyond traditional startup pipelines.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ PROGRAM 5: GSSF ADVISORY ═══════════ -->
+<div id="advisory" class="prog-section bg-dark">
+  <div class="prog-hero bg-dark">
+    <div class="prog-hero-l">
+      <div class="prog-num">Program 05 · Architecture of Innovation</div>
+      <div class="prog-name">GSSF<br>Advisory</div>
+      <div class="prog-tagline">Strategic Advisory & Executive Development</div>
+    </div>
+    <div class="prog-hero-r">
+      <p class="prog-desc">The strategic advisory and global executive development platform of GSSF. Supporting executives, founders, institutions, and governments seeking trusted access to global innovation ecosystems, responsible adoption of emerging technologies (including AI), and long-term ecosystem capacity building. Not consulting. Not a referral network. A mission-led platform that prioritizes stewardship, trust, and durable impact over short-term outcomes.</p>
+      <div class="prog-stats">
+        <div class="ps"><div class="ps-n">76</div><div class="ps-l">Countries Reached</div></div>
+        <div class="ps"><div class="ps-n">2-Day</div><div class="ps-l">AI Bootcamps</div></div>
+        <div class="ps"><div class="ps-n">Zero</div><div class="ps-l">Equity · No Brokerage</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="prog-details prog-details-2 bg-dark">
+    <div class="pd-card bg-dark">
+      <h4>Ecosystem Design & Capacity Building</h4>
+      <ul>
+        <li>Startup ecosystem architecture and design</li>
+        <li>University–industry collaboration models</li>
+        <li>Accelerator, competition, and venture pipeline design</li>
+        <li>Talent development and founder pathways</li>
+        <li>Policy, incentives, and ecosystem benchmarking</li>
+        <li>Responsible integration of AI and digital innovation</li>
+      </ul>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Applied AI Bootcamps (2-Day, In-Person)</h4>
+      <ul>
+        <li>Superhuman Productivity Using AI Tools</li>
+        <li>Building Personal AI Agents</li>
+        <li>AI Workflows & Automation</li>
+        <li>AI Wrapper Applications (Startup-Focused)</li>
+      </ul>
+      <p style="margin-top:12px;">Led by GSSF Global Fellows or professors from world-leading universities. Supported by TAs. Live builds, demos, and guided exercises — no abstract strategy.</p>
+    </div>
+  </div>
+  <div class="prog-details prog-details-4 bg-dark" style="margin-top:1px;">
+    <div class="pd-card bg-dark">
+      <h4>Global Fellows</h4>
+      <p>Senior leaders with deep domain expertise. Lead flagship advisory engagements and applied bootcamps.</p>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Global Partners</h4>
+      <p>Trusted domain experts and ecosystem operators. Deliver specialized services under shared GSSF standards.</p>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Global Associates</h4>
+      <p>Emerging leaders and practitioners. Support research, execution, and ecosystem coordination.</p>
+    </div>
+    <div class="pd-card bg-dark">
+      <h4>Governance</h4>
+      <p>All advisory activities maintain separation from competition judging and venture funding. Zero conflicts of interest.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ── GLOBAL STANDARD ── -->
+<section id="standard" class="sec bg-black">
+  <div class="ey">Institutional IP</div>
+  <h2 class="st">The GSSF<br>Global Standard</h2>
+  <p class="sb">Four proprietary protocols govern all vetting, performance benchmarks, and operational growth across every GSSF program.</p>
+  <div class="std-grid">
+    <div class="std-card">
+      <h3>Proprietary IP · Values</h3>
+      <div class="std-name">GSSF Value Standard</div>
+      <p>The ethical and philosophical anchor. Mandates the Human-Centered mandate, the "Breaking Bread" philosophy of personal engagement, and the 85/15 Rule of financial integrity — ensuring impact-first operations at every scale.</p>
+    </div>
+    <div class="std-card">
+      <h3>Proprietary IP · Talent</h3>
+      <div class="std-name">GSSF Selection Protocol</div>
+      <p>A multi-dimensional vetting rubric to identify "Founder Market Fit," resilience, and execution capability. Built on discovery with leading global VCs and accelerators — effectively de-risking talent for Silicon Valley entry.</p>
+    </div>
+    <div class="std-card">
+      <h3>Proprietary IP · Competition</h3>
+      <div class="std-name">GSSC Competition Standard</div>
+      <p>The universal quality benchmark for all GSSF-affiliated programs. Whether a student is in a Regional AI Cup or GSSC Worlds in Seoul, the standard of execution and presentation is consistent.</p>
+    </div>
+    <div class="std-card">
+      <h3>Proprietary IP · Ecosystem</h3>
+      <div class="std-name">GSSF Scaling Method</div>
+      <p>The institutional blueprint for moving programmatic pillars from discovery to global density — activating undergraduates across the world through the Explore, Incubate, Scale lifecycle.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="leadership" class="sec bg-black" style="padding-top:0;">
+  <div class="ey">Foundation Leadership</div>
+  <h2 class="st">The Team</h2>
+  <p class="sb">Operators, educators, and ecosystem builders united by the "Organizers as Leaders" philosophy.</p>
+
+  <div class="l-tier-label">Global Leadership</div>
+  <div class="leader-grid">
+    <div class="l-card">
+      <div class="l-name">Mike Lee</div>
+      <div class="l-role">Founder & President</div>
+      <p class="l-bio">Former executive at Netscape, Fox, and Warner Bros. Founder of the USC AI Workforce of the Future Initiative. Co-Founder of GSSF and architect of the global competition framework.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Liz Lee</div>
+      <div class="l-role">Founder & Chairman</div>
+      <p class="l-bio">Veteran ecosystem builder. Managing Director of Girls in Tech Korea / I in We for over a decade. Expert in partnerships with embassies, government entities, and major technology companies. The "Breaking Bread" philosophy anchors all global operations.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Carolina Avila</div>
+      <div class="l-role">CEO, GSSF Academy</div>
+      <p class="l-bio">Expert in global entrepreneurship programs. Former Head of Programs at Europe's largest innovation academy. Strategic advisor to governments, universities, and the United Nations.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Jade Bahng</div>
+      <div class="l-role">Managing Director, Global Competition</div>
+      <p class="l-bio">Founder of the GSSC movement and operational architect of the global competition framework. Curates a growing global network of early-career mentors at major technology and media companies.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Yeseul Byun</div>
+      <div class="l-role">Managing Director, Global Competition</div>
+      <p class="l-bio">Co-leads the Global Competition pillar, focusing on strategic expansion of the GSSC brand and institutionalizing the "Worlds" stage across all regional qualifiers and global finals.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Zoe Beach</div>
+      <div class="l-role">Managing Director, GSSF Ventures</div>
+      <p class="l-bio">Embodies the GSSF "Organizers as Leaders" pipeline, having moved from program participant to foundation leader. Connects world-class global talent with Silicon Valley venture capital and institutional accelerators.</p>
+    </div>
+  </div>
+
+  <div class="l-tier-label" style="margin-top:2px;">Regional Leadership</div>
+  <div class="leader-grid" style="grid-template-columns: repeat(3,1fr);">
+    <div class="l-card">
+      <div class="l-name">Miraya Agarwal</div>
+      <div class="l-role">Managing Director, India</div>
+      <p class="l-bio">Architect of the first GSSF Mega-Region. Pioneered the regional scaling model designed to achieve full self-sustainability through local partnerships.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Manuela Berrio</div>
+      <div class="l-role">Managing Director, Latin America</div>
+      <p class="l-bio">Leads strategic expansion across Latin America. Responsible for establishing the Architecture of Innovation within local ecosystems and rolling out Regional AI Cups and Academy residencies.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Jongyeop Seon</div>
+      <div class="l-role">Managing Director, South Korea</div>
+      <p class="l-bio">Manages the GSSF footprint in South Korea and serves as primary liaison for the GSSC Worlds anchor event in Seoul. Oversees regional university partnerships and corporate engagement.</p>
+    </div>
+  </div>
+
+  <div class="l-tier-label" style="margin-top:2px;">Global Advisors</div>
+  <div class="leader-grid">
+    <div class="l-card">
+      <div class="l-name">Gigi Wang</div>
+      <div class="l-role">Chair Emeritus & Global Fellow</div>
+      <p class="l-bio">Industry Fellow & Faculty at UC Berkeley. A co-founder of the GSSC movement and world-renowned leader in entrepreneurship, pioneering programs that bridge academia with Silicon Valley.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Cheryl Edison</div>
+      <div class="l-role">Global Fellow</div>
+      <p class="l-bio">Global Strategic Advisor and expert in US Market Entry. Led innovation initiatives in 76 countries. Strategic Consultant for the US State Department, specializing in global brand positioning and ecosystem building.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Andres Barreto</div>
+      <div class="l-role">Global Advisor</div>
+      <p class="l-bio">Managing Director at Techstars. Serial entrepreneur and early-stage investor, ensuring student-led teams meet the rigorous investment standards of global venture capitalists.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Nitin Kale</div>
+      <div class="l-role">Global Advisor</div>
+      <p class="l-bio">Professor of Engineering Practice at USC. Expert in AI, Analytics, and Blockchain, ensuring GSSF curricula remain at the forefront of emerging technology.</p>
+    </div>
+    <div class="l-card">
+      <div class="l-name">Bob Upham</div>
+      <div class="l-role">Global Advisor</div>
+      <p class="l-bio">Industry Fellow at UC Berkeley. Expert in global entrepreneurship and venture investment, connecting GSSF ventures with capital through a strong global network of investors and founders.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ADVISORS / MENTOR BRANDS -->
+<section id="advisors" class="sec bg-dark">
+  <div class="ey">Global Network</div>
+  <h2 class="st">Mentor Network</h2>
+  <p class="sb">GSSF programs are powered by mentors and advisors from the world's most influential technology, media, academic, diplomatic, and public sector institutions. Individual participation; no implied institutional endorsement.</p>
+  <div class="adv-section">
+    <div class="adv-region">Technology & Innovation</div>
+    <div class="adv-pills">
+      <div class="adv-pill"><div class="adv-n">Google</div></div>
+      <div class="adv-pill"><div class="adv-n">Microsoft</div></div>
+      <div class="adv-pill"><div class="adv-n">Amazon</div></div>
+      <div class="adv-pill"><div class="adv-n">OpenAI</div></div>
+      <div class="adv-pill"><div class="adv-n">Duolingo</div></div>
+      <div class="adv-pill"><div class="adv-n">Techstars</div></div>
+      <div class="adv-pill"><div class="adv-n">Netscape</div></div>
+    </div>
+    <div class="adv-region">Media & Entertainment</div>
+    <div class="adv-pills">
+      <div class="adv-pill"><div class="adv-n">YouTube</div></div>
+      <div class="adv-pill"><div class="adv-n">TikTok</div></div>
+      <div class="adv-pill"><div class="adv-n">Netflix</div></div>
+      <div class="adv-pill"><div class="adv-n">Disney+</div></div>
+      <div class="adv-pill"><div class="adv-n">Live Nation</div></div>
+      <div class="adv-pill"><div class="adv-n">Warner Bros.</div></div>
+      <div class="adv-pill"><div class="adv-n">Fox</div></div>
+      <div class="adv-pill"><div class="adv-n">Ticketmaster</div></div>
+    </div>
+    <div class="adv-region">Public Sector & International Relations</div>
+    <div class="adv-pills">
+      <div class="adv-pill"><div class="adv-n">NASA</div></div>
+      <div class="adv-pill"><div class="adv-n">United Nations</div></div>
+      <div class="adv-pill"><div class="adv-n">US State Department</div></div>
+      <div class="adv-pill"><div class="adv-n">Girls in Tech Korea</div></div>
+    </div>
+    <div class="adv-region">Academic Leadership</div>
+    <div class="adv-pills">
+      <div class="adv-pill"><div class="adv-n">USC</div></div>
+      <div class="adv-pill"><div class="adv-n">UC Berkeley</div></div>
+      <div class="adv-pill"><div class="adv-n">NASA / JPL / Caltech</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- UNIVERSITIES -->
+<section id="universities">
+  <div class="ey">2026 Partner Network</div>
+  <h2 class="st">Global Universities</h2>
+  <p class="sb">18+ universities across four continents participate in the 2026 GSSC cycle. Participation by individuals; no implied institutional endorsement.</p>
+  <div class="uni-region"><div class="uni-rl">Americas</div>
+    <div class="uni-tags"><div class="uni-tag">USC</div><div class="uni-tag">UC Berkeley</div><div class="uni-tag">Harvard</div><div class="uni-tag">Stanford</div><div class="uni-tag">Cornell</div></div>
+  </div>
+  <div class="uni-region"><div class="uni-rl">Europe</div>
+    <div class="uni-tags"><div class="uni-tag">University of Oxford</div><div class="uni-tag">Aalto University</div></div>
+  </div>
+  <div class="uni-region"><div class="uni-rl">Asia & Middle East</div>
+    <div class="uni-tags"><div class="uni-tag">SNU</div><div class="uni-tag">KAIST</div><div class="uni-tag">POSTECH</div><div class="uni-tag">Korea University</div><div class="uni-tag">Ewha Womans University</div><div class="uni-tag">CMU-Qatar</div><div class="uni-tag">Ajou University</div></div>
+  </div>
+  <div class="uni-region"><div class="uni-rl">India — Mega-Region</div>
+    <div class="uni-tags"><div class="uni-tag">IIT Delhi</div><div class="uni-tag">Ashoka University</div><div class="uni-tag">Plaksha University</div><div class="uni-tag">OP Jindal</div><div class="uni-tag">SRCC</div><div class="uni-tag">St. Stephen's</div><div class="uni-tag">Lady Shri Ram</div><div class="uni-tag">Miranda House</div><div class="uni-tag">Shaheed Sukhdev</div></div>
+  </div>
+  <div class="uni-region"><div class="uni-rl">Planned Expansion (Not Committed)</div>
+    <div class="uni-tags"><div class="uni-tag" style="opacity:.55">Singapore (2027)</div><div class="uni-tag" style="opacity:.55">Colombia (2027)</div><div class="uni-tag" style="opacity:.55">Ukraine (2027)</div><div class="uni-tag" style="opacity:.45">Nigeria (2028)</div><div class="uni-tag" style="opacity:.45">Mexico (2028)</div></div>
+  </div>
+</section>
+
+<!-- 2030 VISION -->
+<section id="vision" class="sec bg-black">
+  <div class="ey">Vision 2030 — Global Benchmarks</div>
+  <h2 class="st">The 2030<br>Generational Mission</h2>
+  <p class="sb">Three quantified benchmarks define success by 2030 — built into every program, every partnership, and every funding decision.</p>
+  <div class="v-grid">
+    <div class="v-card">
+      <div class="v-label">Student Impact</div>
+      <div class="v-num">2,000</div>
+      <p>Undergraduate students impacted annually through GSSF programs — on full scholarship, regardless of financial or geographic circumstances.</p>
+    </div>
+    <div class="v-card">
+      <div class="v-label">Technical Seeding</div>
+      <div class="v-num">20–25</div>
+      <p>Regional AI competitions executed annually through the Global AI Cup. Each activates 500+ students at under $4.00 per student.</p>
+    </div>
+    <div class="v-card">
+      <div class="v-label">Global Footprint</div>
+      <div class="v-num">6</div>
+      <p>Self-sustaining operations across all six inhabited continents. Leading regions independently fund their own competitions and GSSC Worlds delegations.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GOVERNANCE -->
+<section id="governance" class="sec bg-dark">
+  <div class="ey">Transparency & Compliance</div>
+  <h2 class="st">Governance</h2>
+  <p class="sb">GSSF operates under an "Extreme Transparency" standard. Financial reports are made available to major donors and regulatory bodies to demonstrate impact at every level.</p>
+  <div class="gov-grid">
+    <div class="gov-card">
+      <h3>Corporate Identity</h3>
+      <p><span class="gv">Legal Name:</span> Global Student Startup Foundation</p>
+      <p><span class="gv">EIN:</span> 41-3141550</p>
+      <p><span class="gv">CA Entity #:</span> B20250420834</p>
+      <p><span class="gv">Incorporated:</span> December 13, 2025</p>
+      <p><span class="gv">501(c)(3) Approval:</span> December 17, 2025</p>
+      <p><span class="gv">Type:</span> Nonprofit Public Benefit Corporation</p>
+      <p><span class="gv">Fiscal Year End:</span> June 30</p>
+      <p><span class="gv">Annual Filing:</span> Form 990-PF</p>
+    </div>
+    <div class="gov-card">
+      <h3>The 85/15 Rule</h3>
+      <p>GSSF is committed to an Impact-First financial model:</p>
+      <ul>
+        <li><span class="gv">≥ 85%</span> of all general funds directed to programmatic impact — student travel, lodging, curriculum, mentorship, and ecosystem development.</li>
+        <li><span class="gv">≤ 15%</span> reserved for legal, accounting, compliance, software, and governance.</li>
+        <li>Donor-earmarked funds are mission-aligned but exempt from the ratio denominator per board policy.</li>
+      </ul>
+    </div>
+    <div class="gov-card">
+      <h3>Board of Directors</h3>
+      <p><span class="gv">President & CEO:</span> Mike Seung Lee</p>
+      <p><span class="gv">CFO & Secretary:</span> Elizabeth Flora Lee</p>
+      <p>All compensation is reasonable, market-appropriate, and board-approved in accordance with IRS private inurement prohibitions. No part of the Foundation's net earnings inures to the benefit of any private individual.</p>
+    </div>
+    <div class="gov-card">
+      <h3>Key Policies</h3>
+      <ul>
+        <li>Conflict of Interest Policy — adopted Feb 15, 2026. All directors, officers, key persons, and organizers sign annually.</li>
+        <li>Use of Funds Policy — adopted Dec 23, 2025; updated Feb 14, 2026.</li>
+        <li>By Laws</li>
+        <li>Privacy Policy</li>
+      </ul>
+      <p style="margin-top:14px;font-size:12px;">All GSSF programs are operated in furtherance of exclusively charitable and educational purposes under IRC Section 501(c)(3). Donor contributions are deductible under IRC Section 170.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="c-l">
+    <div class="ey">Get in Touch</div>
+    <h2 class="st">Contact the<br>Foundation</h2>
+    <div class="c-details">
+      <div class="c-item"><label>Mailing Address</label><p>1837 McFarlane Street<br>San Marino, CA 91108</p></div>
+      <div class="c-item"><label>General Inquiries</label><a href="mailto:foundation@globalstudentstartup.org">foundation@globalstudentstartup.org</a></div>
+      <div class="c-item"><label>Website</label><a href="https://globalstudentstartup.org" target="_blank">globalstudentstartup.org</a></div>
+    </div>
+    <div class="c-socials">
+      <a class="soc" href="https://instagram.com/gsscworlds" target="_blank">↗ instagram.com/gsscworlds</a>
+      <a class="soc" href="https://linkedin.com/company/globalstudentstartup" target="_blank">↗ linkedin.com/company/globalstudentstartup</a>
+    </div>
+  </div>
+  <div class="c-r">
+    <div class="ey">Work With Us</div>
+    <h2 class="st">Partner<br>With GSSF</h2>
+    <p class="sb" style="margin-bottom:20px">GSSF works with diaspora foundations, family foundations, universities, corporations, and government agencies to fund access, build ecosystems, and empower the next generation of global leaders.</p>
+    <p class="sb" style="margin-bottom:12px">Our development strategy is built on three pillars:</p>
+    <p class="sb" style="margin-bottom:8px;font-size:14px;"><strong style="color:var(--white);">Diaspora & Family Foundations</strong> — speed and mission alignment</p>
+    <p class="sb" style="margin-bottom:8px;font-size:14px;"><strong style="color:var(--white);">Patron Sponsors</strong> — structural growth and regional activation</p>
+    <p class="sb" style="margin-bottom:36px;font-size:14px;"><strong style="color:var(--white);">Global Foundations</strong> — long-term scale and sustainability</p>
+    <a href="mailto:foundation@globalstudentstartup.org" class="btn btn-w">Get In Touch</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-l">
+    <div class="logo-f">GS<br>SF</div>
+    <span class="f-name">Global Student Startup Foundation</span>
+  </div>
+  <div class="f-r">
+    foundation.globalstudentstartup.org<br>
+    EIN 41-3141550 · 501(c)(3) · © 2026 Global Student Startup Foundation
+  </div>
+</footer>
+
+</body>
+</html>
